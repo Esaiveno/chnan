@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2024魅力南京 创响金陵</title>
+    <style>
+        :root {
+            --skin-color: #006cff;
+            --main-text-color: #353535;
+            --sub-text-color: #919499;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            -webkit-text-size-adjust: none;
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        body {
+            font-family: PingFang SC, Helvetica Neue, Helvetica, microsoft yahei, arial, STHeiTi, sans-serif;
+            color: #666;
+            font-size: 14px;
+            line-height: 1;
+            background-color: #ffffff;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .content-box {
+            background-color: #dff3fa;
+            /* border-radius: 12px; */
+            padding: 15px;
+            margin-top: -10px;
+        }
+
+        .banner {
+            width: 100%;
+            height: auto;
+            position: relative;
+            margin-bottom: 0;
+        }
+
+        .banner img {
+            width: 100%;
+            display: block;
+            /* border-radius: 12px 12px 0 0; */
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px 15px;
+            /* background: #fff; */
+            /* border-radius: 12px; */
+            /* box-shadow: 0 2px 10px rgba(0,0,0,0.05); */
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .menu-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .menu-icon img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .menu-text {
+            font-size: 14px;
+            color: var(--main-text-color);
+            white-space: nowrap;
+        }
+
+        /* 图标颜色 */
+        .icon-training { background: #8A2BE2; }
+        .icon-policy { background: #FFD700; }
+        .icon-innovation { background: #FF1493; }
+        .icon-activities { background: #1E90FF; }
+        .icon-competition { background: #32CD32; }
+
+        @media screen and (max-width: 360px) {
+            #app {
+                padding: 10px;
+            }
+            
+            .content-box {
+                padding: 10px;
+            }
+
+            .menu-container {
+                padding: 15px 10px;
+            }
+            
+            .menu-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .menu-icon img {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .menu-text {
+                font-size: 12px;
+            }
+        }
+
+        /* 在已有样式后添加培训导师相关样式 */
+        .trainer-section,
+        .innovation-section,
+        .live-section {
+            margin-top: 30px;  /* 统一设置上边距 */
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;  /* 增加标题与内容的间距 */
+            font-weight: bold;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 16px;
+            background-color: var(--skin-color);
+            border-radius: 2px;
+        }
+
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  /* 默认三列 */
+            gap: 12px;
+        }
+
+        .trainer-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            border: 3px solid rgb(191, 226, 255);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .trainer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin: 0 auto 4px;
+            overflow: hidden;
+        }
+
+        .trainer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trainer-name {
+            font-size: 12px;
+            color: var(--main-text-color);
+            margin-top: 2px;
+        }
+
+        /* 添加响应式断点 */
+        @media screen and (max-width: 480px) {
+            .trainer-grid {
+                grid-template-columns: repeat(3, 1fr);  /* 三列 */
+                gap: 8px;  /* 减小间距 */
+            }
+            
+            .trainer-item {
+                width: 90px;  /* 减小宽度 */
+                height: 90px;  /* 减小高度 */
+                padding: 6px;  /* 减小内边距 */
+            }
+            
+            .trainer-avatar {
+                width: 50px;  /* 减小头像尺寸 */
+                height: 50px;
+            }
+            
+            .trainer-name {
+                font-size: 12px;  /* 减小字体 */
+                margin-top: 4px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .trainer-grid {
+                grid-template-columns: repeat(3, 1fr);  /* 保持三列 */
+                gap: 6px;  /* 进一步减小间距 */
+            }
+            
+            .trainer-item {
+                width: 80px;  /* 进一步减小宽度 */
+                height: 80px;  /* 进一步减小高度 */
+                padding: 4px;  /* 减小内边距 */
+            }
+            
+            .trainer-avatar {
+                width: 45px;  /* 减小头像尺寸 */
+                height: 45px;
+            }
+            
+            .trainer-name {
+                font-size: 11px;  /* 减小字体 */
+                margin-top: 2px;
+            }
+        }
+
+        /* 添加活动安排相关样式 */
+        .activity-section {
+            margin-top: 20px;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 10px;
+        }
+
+        .activity-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border: 3px solid rgb(191, 226, 255);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--skin-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .activity-icon img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .activity-text {
+            font-size: 16px;
+            color: var(--main-text-color);
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 360px) {
+            .activity-grid {
+                gap: 10px;
+            }
+
+            .activity-item {
+                padding: 12px;
+            }
+
+            .activity-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .activity-icon img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .activity-title {
+                font-size: 12px;
+            }
+
+            .activity-text {
+                font-size: 14px;
+            }
+        }
+
+        /* 修改科创载体相关样式 */
+        .innovation-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+        }
+
+        .innovation-item {
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;  /* 16:9 的宽高比 */
+        }
+
+        .innovation-item a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .innovation-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* 改为 cover 以填充整个容器 */
+            display: block;
+        }
+
+        /* 移除不需要的样式 */
+        .innovation-item {
+            margin-bottom: 0;
+            background-color: transparent;
+        }
+
+        .innovation-name {
+            position: absolute;
+            left: 0;
+            top: 20px;  /* 距离顶部位置 */
+            background-color: #fff;  /* 白色背景 */
+            padding: 8px 20px 8px 15px;  /* 左右内边距 */
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            border-radius: 0 20px 20px 0;  /* 右侧圆角 */
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);  /* 轻微阴影 */
+        }
+
+        @media screen and (max-width: 360px) {
+            .innovation-grid {
+                gap: 0;
+            }
+        }
+
+        /* 修改直播列表相关样式 */
+        .live-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .live-item a {
+            display: flex;
+            align-items: center;
+        }
+
+        .live-image {
+            width: 120px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;  /* 防止图片被压缩 */
+        }
+
+        .live-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-info {
+            flex: 1;
+        }
+
+        .live-title {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.4;  /* 增加行高 */
+        }
+
+        .live-count {
+            font-size: 14px;
+            color: #999;
+        }
+
+        @media screen and (max-width: 360px) {
+            .live-image {
+                width: 100px;
+                height: 70px;
+            }
+
+            .live-title {
+                font-size: 14px;
+            }
+
+            .live-count {
+                font-size: 12px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .trainer-section,
+            .innovation-section,
+            .live-section {
+                margin-top: 20px;  /* 小屏幕下稍微减小间距 */
+            }
+            
+            .section-title {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* 添加链接样式 */
+        .clickable-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="content-box">
+            <div class="banner">
+                <img src="./info.jpg" alt="2024魅力南京 创响金陵">
+            </div>
+            <div class="menu-container">
+                <a href="https://wx.vzan.com/live/mk/aggspread/561187/eef72ab5-e9f4-11ee-9f64-b02628492540" class="menu-item clickable-link">
+                    <div class="menu-icon icon-training">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M21 17V3H3v14h18m0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h18M6 9h12v2H6V9m0 4h12v2H6v-2Z'/%3E%3C/svg%3E" alt="创业培训">
+                    </div>
+                    <span class="menu-text">创业培训</span>
+                </a>
+                <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5MTc3MTk0MQ==&action=getalbum&album_id=2487336224479969280#wechat_redirect" class="menu-item clickable-link">
+                    <div class="menu-icon icon-policy">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z'/%3E%3C/svg%3E" alt="政策解读">
+                    </div>
+                    <span class="menu-text">政策解读</span>
+                </a>
+                <a href="https://wx.vzan.com/live/mk/aggspread/561187/65135c84-e9f5-11ee-9f64-b02628492540" class="menu-item clickable-link">
+                    <div class="menu-icon icon-innovation">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E" alt="科创载体">
+                    </div>
+                    <span class="menu-text">科创载体</span>
+                </a>
+                <a href="https://wx.vzan.com/live/mk/aggspread/561187/bf47c5b7-e9f5-11ee-9f64-b02628492540" class="menu-item clickable-link">
+                    <div class="menu-icon icon-activities">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M16 13h-3V3h-2v10H8l4 4l4-4M4 19v2h16v-2H4Z'/%3E%3C/svg%3E" alt="系列活动">
+                    </div>
+                    <span class="menu-text">系列活动</span>
+                </a>
+            </div>
+            <div class="trainer-section">
+                <h2 class="section-title">培训导师</h2>
+                <div class="trainer-grid">
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/eef72ab5-e9f4-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./c34ecbb3264644c0b5420bdecf22d3a1.png" alt="夏贯明">
+                            </div>
+                            <div class="trainer-name">夏贯明</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/2f9a879c-e9f5-11ee-9f64-b02628492540?v=1711535406729&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./12f54505d4af45b4863e7133d62f4858.png" alt="谈玲">
+                            </div>
+                            <div class="trainer-name">谈玲</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/65135c84-e9f5-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./0cd9920dc8a4456eb8a8bb467c8739c4.png" alt="韩晗">
+                            </div>
+                            <div class="trainer-name">韩晗</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/bf47c5b7-e9f5-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./e05bb20185ed438681e1d4182214fa04.png" alt="黄卫东">
+                            </div>
+                            <div class="trainer-name">黄卫东</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/e1b837c7-e9f5-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./8062fc8f0c5a45a6b7a1d265ea94a711.png" alt="姜鹏飞">
+                            </div>
+                            <div class="trainer-name">姜鹏飞</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/f8c03535-e9f5-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./4c7690ccc50c440c9b11998f4f73fab0.png" alt="王慧">
+                            </div>
+                            <div class="trainer-name">王慧</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/19005cc5-e9f6-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./97f7e491a51a4c59945274e6510f79ff.png" alt="胡晓玲">
+                            </div>
+                            <div class="trainer-name">胡晓玲</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/36517190-e9f6-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./0c5421be55724f61a3598ecfa8ecc1fd.png" alt="张翼">
+                            </div>
+                            <div class="trainer-name">张翼</div>
+                        </a>
+                    </div>
+                    <div class="trainer-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/23078c3f-f620-11ee-9f64-b02628492540" class="clickable-link">
+                            <div class="trainer-avatar">
+                                <img src="./20c81cc55cec46019ffc03eb2feb9305.png" alt="于磊">
+                            </div>
+                            <div class="trainer-name">于磊</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="innovation-section">
+                <h2 class="section-title">科创载体</h2>
+                <div class="innovation-grid">
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/a9c60d95-ec12-11ee-9f64-b02628492540?v=1711529009775&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_2.jpg" alt="韶华工坊">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/a6e77bb8-ec13-11ee-9f64-b02628492540?v=1711529005503&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_3.jpg" alt="同心家园">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/c5929de9-ec13-11ee-9f64-b02628492540?v=1711529000413&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_4.jpg" alt="同心家园">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/dae3ceee-ec13-11ee-9f64-b02628492540?v=1711528996671&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_5.jpg" alt="同心家园">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/f1172b63-ec13-11ee-9f64-b02628492540?v=1711528990705&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_6.jpg" alt="同心家园">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/066fac5a-ec14-11ee-9f64-b02628492540?v=1711528985420&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_7.jpg" alt="同心家园">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/144f51bf-ec14-11ee-9f64-b02628492540?v=1711528956449&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_8.jpeg" alt="同心家园">
+                        </a>
+                    </div>
+                    <div class="innovation-item">
+                        <a href="https://wx.vzan.com/live/mk/aggspread/561187/2911d062-ec14-11ee-9f64-b02628492540?v=1711528951498&navType=9&navStyle=0&mainId=de784ba8-e4d1-11ee-9f64-b02628492540" class="clickable-link">
+                            <img src="./image_9.jpeg" alt="同心家园">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="live-section">
+                <h2 class="section-title">直播列表</h2>
+                <div class="live-item">
+                    <a href="https://vzan.com/live/tvchat-561187?v=1681029848984#/" class="clickable-link">
+                        <div class="live-image">
+                            <img src="./image_10.jpeg" alt="2024年南京市创业大讲坛">
+                        </div>
+                        <div class="live-info">
+                            <div class="live-title">2024年南京市创业大讲坛</div>
+                            <div class="live-count">已更新 30 期</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
