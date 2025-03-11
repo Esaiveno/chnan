@@ -164,31 +164,41 @@
             border-radius: 2px;
         }
 
+        /* 培训导师基础样式 */
         .trainer-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);  /* 默认三列 */
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3%;
+            padding: 0 3%;
+            width: 100%;
         }
 
         .trainer-item {
             background: #fff;
             border-radius: 8px;
-            padding: 8px;
+            padding: 4%;
             text-align: center;
             border: 3px solid rgb(191, 226, 255);
-            width: 100px;
-            height: 100px;
+            aspect-ratio: 1;
+            width: 100%;
+            max-width: 80%;  /* 相对于父容器的宽度 */
+        }
+
+        .trainer-item a {
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
         }
 
         .trainer-avatar {
-            width: 60px;
-            height: 60px;
+            width: 65%;  /* 相对于卡片的宽度 */
+            aspect-ratio: 1;
             border-radius: 8px;
-            margin: 0 auto 4px;
+            margin: 0 auto 4%;
             overflow: hidden;
         }
 
@@ -199,55 +209,40 @@
         }
 
         .trainer-name {
-            font-size: 12px;
+            font-size: clamp(10px, 2.5vw, 14px);  /* 响应式字体大小 */
             color: var(--main-text-color);
-            margin-top: 2px;
+            margin-top: 2%;
         }
 
-        /* 添加响应式断点 */
+        /* 响应式调整 */
         @media screen and (max-width: 480px) {
             .trainer-grid {
-                grid-template-columns: repeat(3, 1fr);  /* 三列 */
-                gap: 8px;  /* 减小间距 */
+                gap: 2%;
+                padding: 0 2%;
             }
             
             .trainer-item {
-                width: 90px;  /* 减小宽度 */
-                height: 90px;  /* 减小高度 */
-                padding: 6px;  /* 减小内边距 */
+                padding: 3%;
             }
             
             .trainer-avatar {
-                width: 50px;  /* 减小头像尺寸 */
-                height: 50px;
-            }
-            
-            .trainer-name {
-                font-size: 12px;  /* 减小字体 */
-                margin-top: 4px;
+                width: 70%;
             }
         }
 
         @media screen and (max-width: 360px) {
             .trainer-grid {
-                grid-template-columns: repeat(3, 1fr);  /* 保持三列 */
-                gap: 6px;  /* 进一步减小间距 */
+                gap: 1.5%;
+                padding: 0 1.5%;
             }
             
             .trainer-item {
-                width: 80px;  /* 进一步减小宽度 */
-                height: 80px;  /* 进一步减小高度 */
-                padding: 4px;  /* 减小内边距 */
+                padding: 2%;
             }
             
             .trainer-avatar {
-                width: 45px;  /* 减小头像尺寸 */
-                height: 45px;
-            }
-            
-            .trainer-name {
-                font-size: 11px;  /* 减小字体 */
-                margin-top: 2px;
+                width: 75%;
+                margin-bottom: 2%;
             }
         }
 
@@ -346,8 +341,8 @@
             overflow: hidden;
             position: relative;
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;  /* 16:9 的宽高比 */
+            padding-bottom: 40%;  /* 调整为 5:2 的比例 */
+            margin-bottom: 2px;
         }
 
         .innovation-item a {
@@ -356,19 +351,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-        }
-
-        .innovation-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;  /* 改为 cover 以填充整个容器 */
             display: block;
         }
 
-        /* 移除不需要的样式 */
-        .innovation-item {
-            margin-bottom: 0;
-            background-color: transparent;
+        .innovation-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* 保持图片比例并填充容器 */
         }
 
         .innovation-name {
