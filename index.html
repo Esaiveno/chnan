@@ -66,17 +66,19 @@
             justify-content: space-around;
             align-items: center;
             padding: 20px 15px;
-            /* background: #fff; */
-            /* border-radius: 12px; */
-            /* box-shadow: 0 2px 10px rgba(0,0,0,0.05); */
         }
 
-        .menu-item {
+        .menu-item.clickable-link {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            width: 25%;
+            height: 90px;
+            padding: 0 5px;
+            box-sizing: border-box;
+            text-decoration: none;
         }
 
         .menu-icon {
@@ -86,7 +88,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
+            margin: 0 auto 8px;
         }
 
         .menu-icon img {
@@ -99,6 +101,13 @@
             font-size: 14px;
             color: var(--main-text-color);
             white-space: nowrap;
+            height: 20px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 0 auto;
         }
 
         /* 图标颜色 */
@@ -119,6 +128,11 @@
 
             .menu-container {
                 padding: 15px 10px;
+            }
+            
+            .menu-item.clickable-link {
+                height: 80px;
+                padding: 0 3px;
             }
             
             .menu-icon {
@@ -621,18 +635,51 @@
             <div class="live-section">
                 <h2 class="section-title">直播列表</h2>
                 <div class="live-item">
-                    <a href="https://vzan.com/live/tvchat-561187?v=1681029848984#/" class="clickable-link">
+                    <a href="https://wx.vzan.com/live/channelpage-287176?v=1741662572984" class="clickable-link">
                         <div class="live-image">
-                            <img src="./image_10.jpeg" alt="2024年南京市创业大讲坛">
+                            <img src="./info.jpg" alt="2024年南京市创业大讲坛">
                         </div>
                         <div class="live-info">
-                            <div class="live-title">2024年南京市创业大讲坛</div>
-                            <div class="live-count">已更新 30 期</div>
+                            <div class="live-title">2025年南京市创业大讲坛</div>
+                            <div class="live-count">已更新 1 期</div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    </body>
+    <script>
+    function updateLiveCount() {
+        // 直接从 URL 获取数据
+        fetch('https://wx.vzan.com/live/pc/channel-detail', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Referer': 'https://wx.vzan.com/live/channelpage-287176'
+            },
+            credentials: 'include',
+            mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(data => {
+            const liveCountElement = document.querySelector('.live-count');
+            if (liveCountElement && data && data.liveCount) {
+                liveCountElement.textContent = `已更新 ${data.liveCount} 期`;
+            }
+        })
+        .catch(error => {
+            console.error('获取直播场次失败:', error);
+            // 使用默认值
+            const liveCountElement = document.querySelector('.live-count');
+            if (liveCountElement) {
+                liveCountElement.textContent = '已更新';
+            }
+        });
+    }
+
+    // 页面加载时获取
+    updateLiveCount();
+    </script>
+</body>
 </html>
